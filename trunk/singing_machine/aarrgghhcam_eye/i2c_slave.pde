@@ -1,30 +1,47 @@
 
+
+byte lastCommand;
+
 void initAargcamSlave(void)
 {
   pinMode(13, OUTPUT);//Status led
 
-  Wire.begin(AARGCAM_I2C_ADDRESS); // start i2c as master
+  Wire.begin(AARGCAM_I2C_ADDRESS); // start i2c as slave
   // Arduino analog input 5 - I2C SCL
   // Arduino analog input 4 - I2C SDA
 
-  Wire.onRequest(i2cRequestEvent); // register event
-  Wire.onReceive(i2CReceiveEvent); 
+  Wire.onRequest(i2cRequestEvent); // register a function which will be called when the master asks for data
+  Wire.onReceive(i2CReceiveEvent); // register a function which will be called when the master send a command (which it will do before askigng for data)
 
 }
 
 
 void i2cRequestEvent() // called when master asks for bytes
 {
-  if( lastCommand == AARGCAM_I2C_READ_COMMAND )
+  switch( lastCommand )
   {
+    case AARGCAM_I2C_READ_COMMAND:
+    
     Wire.send(aargcamLinePosition); // respond with number of bytes
     // as expected by master
 
 
     digitalWrite(13,toggle); //Status LED...
     toggle = ! toggle;
-
-  }
+    break;
+    
+    
+  
+  /*
+  case AARGCAM_some_other_command:
+  
+    Wire.send(response_for_that_command);
+    break;
+    
+  */
+  
+  } 
+  
 #ifdef DO_LOGGING
   Serial.print ("i2cRequestEvent\n");
 #endif
