@@ -2,6 +2,12 @@
 
 #include "i2c_commands.h"
 
+// The Wire i2c library uses analogue inputs 4 and 5 for i2c communication, as SDA and SCL.
+
+// To get your arduinos to talk, connect all the analogue input 4s together, and connect all the analogue input 5s together.
+// Only one of the arduinos must be playing the role of master, which it does by calling Wire.begin() with no arguments. 
+// All the slaves should be using i2c_slave.pde, which calls Wire.begin(address).
+// Make sure the slaves all have different addresses !
 
 int i2c_read_8(int slaveAddress, int command) ;
 boolean toggle = false;

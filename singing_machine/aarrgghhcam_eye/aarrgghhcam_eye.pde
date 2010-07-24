@@ -10,8 +10,22 @@
 
 #include "i2c_commands.h"
 
-byte lastCommand;
-byte aargcamLinePosition = 23;
+
+byte aargcamLinePosition = 23;  // the position value we will send over i2c when asked
+
+// Pins to wire to the camera, MLX90255KWB-BAM 
+// http://uk.rs-online.com/web/search/searchBrowseAction.html?method=getProduct&R=6843317
+int clockPin=2;    // to pin 2 on camera
+int SIPin=3;       // to pin 1 on camera 
+int analogueIn=0;  // to pin 3 on camera
+
+// Also connect:
+// arduino ground to pin 5 of camera
+// arduino +5v supply to pin 4 of camera
+// You also need a 330 ohm pulldown resistor between camera pins 3 (output) and 5 (ground)
+
+// Expected output range of the camera is 125mv (dark) to 2.5v (saturated) 
+
 
 boolean toggle = false;
 
@@ -21,9 +35,9 @@ int counter=0;
 int threshold=512;        //0-1024 threashold between Light and Dark.
 int clockDelay=1;          //Microseconds of clock period (/2)
 int thresholdPin=1;
-int clockPin=2;
-int SIPin=3;
-int analogueIn=0;
+
+
+
 int dark=0;
 int bright=0;
 int pixel=0;
