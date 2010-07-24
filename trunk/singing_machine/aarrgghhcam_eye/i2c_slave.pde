@@ -1,6 +1,14 @@
 
+#include <Wire.h> 
 
-byte lastCommand;
+#include "i2c_commands.h"
+
+
+// This file is talking to i2c_master.pde in the aarrgghhcam_singer project
+
+
+byte lastCommand = 0;
+boolean toggle = false;
 
 void initAargcamSlave(void)
 {

@@ -9,10 +9,13 @@
 // All the slaves should be using i2c_slave.pde, which calls Wire.begin(address).
 // Make sure the slaves all have different addresses !
 
+// This file is talking to i2c_slave.pde in the aarrgghhcam_eye project
+
+
 int i2c_read_8(int slaveAddress, int command) ;
 boolean toggle = false;
 
-void initAargcamMaster(void)
+void initI2cMaster(void)
 {
   pinMode(13, OUTPUT);//Status led
   #ifndef SIMULATE_AARGCAM

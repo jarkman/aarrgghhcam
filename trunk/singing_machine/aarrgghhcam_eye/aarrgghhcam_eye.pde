@@ -6,12 +6,8 @@
 
 // SVN originated edit!
 
-#include <Wire.h> 
+// For more detail, see https://code.google.com/p/aarrgghhcam/
 
-#include "i2c_commands.h"
-
-
-byte aargcamLinePosition = 23;  // the position value we will send over i2c when asked
 
 // Pins to wire to the camera, MLX90255KWB-BAM 
 // http://uk.rs-online.com/web/search/searchBrowseAction.html?method=getProduct&R=6843317
@@ -26,8 +22,9 @@ int analogueIn=0;  // to pin 3 on camera
 
 // Expected output range of the camera is 125mv (dark) to 2.5v (saturated) 
 
+byte aargcamLinePosition = 0;  // the position value we will send over i2c in response to AARGCAM_I2C_READ_COMMAND
 
-boolean toggle = false;
+
 
 int pixels=128;          //128 pixels but need 133 clock cycles.
 int line[133];

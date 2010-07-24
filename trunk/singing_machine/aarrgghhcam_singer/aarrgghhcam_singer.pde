@@ -1,5 +1,13 @@
 
-/* singer - generate tunes from i2c camera input */
+/* aarrgghhcam_singer - generate tunes from i2c camera input */
+
+/* This sketch talks over i2c to another arduino with a line camera running the aarrgghhcam_eye sketch.
+   It generates musical output based on the camera's input, intended to be from a paper tape with a wiggly line.
+   Musical output is in the form of PWM udio on digital out pin 3. You really can just wire a small speaker between 
+   digital out 3 and ground.
+   
+   For more detail, see https://code.google.com/p/aarrgghhcam/
+*/
 
 #include <avr/io.h>
 #include "notes.h"
@@ -8,7 +16,8 @@
 
 
 #define DO_LOGGING // NB - do not leave Serial.out lines in place when DO_LOGGING is off!
-//#define SIMULATE_AARGCAM
+
+//#define SIMULATE_AARGCAM // turn on to get pretend-camera values generated without using a camera or an i2c slave at all
 
 
 
@@ -20,7 +29,7 @@ void setup ()
   
   setupNotes ();
   
-  initAargcamMaster();
+  initI2cMaster();
 
   #ifdef DO_LOGGING
   Serial.begin (9600); // for debugging
