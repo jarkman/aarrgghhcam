@@ -6,12 +6,7 @@
 
 #define  DO_LOGGING
 
-#include "i2c_commands.h"
-
-byte lastCommand;
-byte aargcamLinePosition = 23;
-
-boolean toggle = false;
+byte aargcamLinePosition = 0;  // the position value we will send over i2c in response to AARGCAM_I2C_READ_COMMAND
 
 void setup ()
 {
