@@ -4,6 +4,8 @@
 // Than implements a ASCII grey scale between them.
 // Centre of 'MASS' for basically brightest point.
 
+// SVN originated edit!
+
 #include <Wire.h> 
 
 #include "i2c_commands.h"
